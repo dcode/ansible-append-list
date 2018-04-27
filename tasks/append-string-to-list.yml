@@ -17,11 +17,13 @@
 - name: Append another item to the list
   set_fact:
     my_strings: "{{ my_strings }} + [ 'Power' ]"
+    
+- debug: var=my_strings
 
 - name: Append moar items to the list from loop
   set_fact:
-    my_strings: "{{ my_strings }} + [ '{{ item }}' ]"
-  loop:
+    my_strings: "{{ my_strings + [item] }}"
+  with_items:
     - Just
     - Don't
     - Have
@@ -29,3 +31,4 @@
     - Power
 
 - debug: var=my_strings
+
