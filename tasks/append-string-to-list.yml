@@ -1,8 +1,8 @@
 ---
 
-- name: Initialize an empty list for our strings
-  set_fact:
-    my_strings: []
+#- name: Initialize an empty list for our strings
+#  set_fact:
+#    my_strings: []
 
 - name: Setup a string variable
   set_fact:
@@ -17,5 +17,15 @@
 - name: Append another item to the list
   set_fact:
     my_strings: "{{ my_strings }} + [ 'Power' ]"
+
+- name: Append moar items to the list from loop
+  set_fact:
+    my_strings: "{{ my_strings }} + [ '{{ item }}' ]"
+  loop:
+    - Just
+    - Don't
+    - Have
+    - The
+    - Power
 
 - debug: var=my_strings
